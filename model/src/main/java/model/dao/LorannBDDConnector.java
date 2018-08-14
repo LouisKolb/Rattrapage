@@ -6,44 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * <h1>The Class BoulderDashBDDConnector.</h1>
- *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
- */
 final class LorannBDDConnector {
 
-    /** The instance. */
     private static LorannBDDConnector instance;
-
-    /** The login. */
-    private static String                  user     = "root";
-
-    /** The password. */
-    private static String                  password = "";
-
-    /** The url. */
-    private static String                  url      = "jdbc:mysql://localhost/lorann?useSSL=false&serverTimezone=UTC";
-
-    /** The connection. */
+    private static String                  user     = "louis";
+    private static String                  password = "admin";
+    private static String                  url      = "jdbc:mysql://localhost:3306/rattrapage?useSSL=false&serverTimezone=UTC";
     private Connection                     connection;
-
-    /** The statement. */
     private Statement                      statement;
 
-    /**
-     * Instantiates a new boulder dash BDD connector.
-     */
+
     private LorannBDDConnector() {
-        this.open();
+        try{
+            connection = DriverManager.getConnection(url,user , password);
+            System.out.println("- SQL Connecté à la BDD!");
+        } catch (SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
     }
 
-    /**
-     * Gets the single instance of BoulderDashBDDConnector.
-     *
-     * @return single instance of BoulderDashBDDConnector
-     */
     public static LorannBDDConnector getInstance() {
         if (instance == null) {
             setInstance(new LorannBDDConnector());
@@ -51,12 +34,6 @@ final class LorannBDDConnector {
         return instance;
     }
 
-    /**
-     * Sets the instance.
-     *
-     * @param instance
-     *            the new instance
-     */
     private static void setInstance(final LorannBDDConnector instance) {
         LorannBDDConnector.instance = instance;
     }
@@ -66,17 +43,17 @@ final class LorannBDDConnector {
      *
      * @return true, if successful
      */
-    private boolean open() {
+    /*private boolean open() {
         try {
-            this.connection = DriverManager.getConnection(LorannBDDConnector.url, LorannBDDConnector.user,
-                    LorannBDDConnector.password);
+            this.connection = DriverManager.getConnection(LorannBDDConnector.url, LorannBDDConnector.user, LorannBDDConnector.password);
             this.statement = this.connection.createStatement();
+            System.out.println("- SQL Connecté à la BDD!");
             return true;
         } catch (final SQLException exception) {
             exception.printStackTrace();
         }
         return false;
-    }
+    }*/
 
     /**
      * Execute query.

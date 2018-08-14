@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lorann:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/lorann_jar</output-path>
+    <root id="archive" name="lorann.jar">
+      <element id="module-output" name="controller" />
+      <element id="module-output" name="contract" />
+      <element id="module-output" name="showboard" />
+      <element id="module-output" name="main" />
+      <element id="module-output" name="view" />
+      <element id="module-output" name="model" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/view/src/main/resources" />
+    </root>
+  </artifact>
+</component>
