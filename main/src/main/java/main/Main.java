@@ -2,9 +2,8 @@ package main;
 
 import java.sql.SQLException;
 
-import com.sun.tools.internal.xjc.model.Model;
-import controller.ControllerFacade;
 import model.ModelFacade;
+import controller.ControllerFacade;
 import view.Frame;
 import view.IView;
 import view.ViewFacade;
@@ -19,13 +18,10 @@ public class Main{
 
         final ControllerFacade controller = new ControllerFacade(test2, test);
 
-        try {
-            controller.start();
-            new Frame(test);
+        controller.start();
+        new Frame(test);
 
-        } catch (final SQLException exception) {
-            exception.printStackTrace();
-        }
+        float startTime = System.currentTimeMillis();
 
         System.out.println("- Taille de la grille: "+ IView.w + " x " + IView.h);
 

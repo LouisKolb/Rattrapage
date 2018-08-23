@@ -3,9 +3,9 @@ package view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
-import controller.IController;
-import controller.IOrder;
 import model.IModel;
+import view.Display;
+
 import static view.IView.h;
 import static view.IView.w;
 
@@ -14,14 +14,13 @@ public class Frame extends JFrame implements KeyListener {
 
     private Display affichage;
     private IModel model;
-    private IOrder controller;
-
+    public static long startTime;
 
     public Frame(IModel model) {
         this.model = model;
         this.affichage = new Display(this.model);
 
-        this.setTitle("Lorran");
+        this.setTitle("Toad");
         this.setResizable(false);
         this.setContentPane(this.affichage);
         this.setSize(w, h);

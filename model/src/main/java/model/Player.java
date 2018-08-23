@@ -1,16 +1,18 @@
 package model;
 
 import javax.swing.*;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+
+import view.IView;
+import view.IView.*;
 
 public class Player {
 
+    public long startTime = System.currentTimeMillis();
     private String name;
     private int direction;
-    public int x, y;
+    public static int x;
+    public static int y;
 
 
     public Player(String name, int direction, int x, int y) {
@@ -65,38 +67,51 @@ public class Player {
         return direction;
     }
 
-    public void isWinner(long gameTimer) {
+    /*public void isWinner(long gameTimer) {
         float GameTimer = gameTimer;
         GameTimer = GameTimer / 1000;
         String time = Float.toString(GameTimer);
-
-        try {
-            String url = "jdbc:mysql://localhost:3306/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
-            String user = "root";
-            String password = "root";
-
-            Connection conn = null;
-            conn = DriverManager.getConnection(url, user, password);
-            System.out.println("- SQL Connecté à la BDD!");
-
-            CallableStatement cStmt = conn.prepareCall("{call add_game(?, ?)}");
-            cStmt.setString(1, this.getName());
-            cStmt.setString(2, time);
-            cStmt.execute();
-            System.out.println("- SQL Enregistré sur la BDD!");
-
-
-        } catch (SQLException ex) {
-            // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
-        }
 
         System.out.println("- Le joueur " + this.getName() + " a gagné!");
         System.out.println("- Durée de la partie: " + GameTimer + "s");
         System.out.println("- FIN DE LA PARTIE !");
 
-        JOptionPane.showMessageDialog(null, "Le joueur " + this.getName() + " a gagné!\nAppuyez sur OK puis sur R pour recommencer!", "Fin de la partie", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Le joueur " + this.getName() + " a gagné!", "Fin de la partie", JOptionPane.INFORMATION_MESSAGE);
+    }*/
+
+    public void isLose(){
+        float time = System.currentTimeMillis() - startTime;
+        time = time /1000;
+
+        System.out.println("- Partie perdu");
+        System.out.println("Durée de la partie: " + time + "s");
+        System.out.println("- FIN DE LA PARTIE !");
+
+        String pseudo = JOptionPane.showInputDialog(null, "Vous avez perdu :(\nTemps écoulé : "+ time + " s\nEntrer votre pseudo :","Défaite !" ,JOptionPane.INFORMATION_MESSAGE );
+
+        try{
+            String url="jdbc:mysql://82.244.188.72:3306/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
+            String user="louis";
+            String password="louis";
+
+            Connection conn = null;
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("- Connection à la BDD opérationnel !");
+
+            CallableStatement cStmt = conn.prepareCall("{call add_game(?, ?, ?)}");
+            cStmt.setString(1, pseudo);
+            cStmt.setFloat(2, time);
+            cStmt.setString(3, "Défaite");
+            cStmt.execute();
+            System.out.println("- Données enregistré dans la BDD");
+        }
+        catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+
+        System.exit(1);
+
     }
 }

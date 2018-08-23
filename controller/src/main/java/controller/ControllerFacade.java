@@ -1,7 +1,6 @@
 package controller;
 
-import java.sql.SQLException;
-import java.util.List;
+
 import model.IModel;
 import view.IView;
 
@@ -17,10 +16,11 @@ public class ControllerFacade implements IController {
         this.model = model;
     }
 
-    public void start() throws SQLException {
+    public void start(){
 
-        this.getModel();
         this.getView();
+        this.getModel();
+
 
     }
 
