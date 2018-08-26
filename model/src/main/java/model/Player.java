@@ -67,17 +67,41 @@ public class Player {
         return direction;
     }
 
-    /*public void isWinner(long gameTimer) {
-        float GameTimer = gameTimer;
-        GameTimer = GameTimer / 1000;
-        String time = Float.toString(GameTimer);
+    public void isWinner(){
+        float time = System.currentTimeMillis() - startTime;
+        time = time /1000;
 
-        System.out.println("- Le joueur " + this.getName() + " a gagné!");
-        System.out.println("- Durée de la partie: " + GameTimer + "s");
-        System.out.println("- FIN DE LA PARTIE !");
+        System.out.println("- Partie Gagné");
+        System.out.println("- Durée de la partie: " + time + "s");
+        System.out.println("- Partie terminé !");
 
-        JOptionPane.showMessageDialog(null, "Le joueur " + this.getName() + " a gagné!", "Fin de la partie", JOptionPane.INFORMATION_MESSAGE);
-    }*/
+        String pseudo = JOptionPane.showInputDialog(null, "Vous avez gagné :(\nTemps écoulé : "+ time + " s\nEntrer votre pseudo :","Victoire ! !" ,JOptionPane.INFORMATION_MESSAGE );
+
+        try{
+            String url="jdbc:mysql://82.244.188.72:3306/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
+            String user="louis";
+            String password="louis";
+
+            Connection conn = null;
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("- Connection à la BDD opérationnel !");
+
+            CallableStatement cStmt = conn.prepareCall("{call add_game(?, ?, ?)}");
+            cStmt.setString(1, pseudo);
+            cStmt.setFloat(2, time);
+            cStmt.setString(3, "Victoire");
+            cStmt.execute();
+            System.out.println("- Données enregistré dans la BDD");
+        }
+        catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+
+        System.exit(1);
+
+    }
 
     public void isLose(){
         float time = System.currentTimeMillis() - startTime;

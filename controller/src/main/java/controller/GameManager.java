@@ -40,13 +40,6 @@ public class GameManager{
         int c = aC - bC;
         float xC = ((30*c) + 930);
         System.out.println("Case n°"+c);
-        CaseManager.Case(c);
-    }
-
-    public void CaseCo(){
-
-
-
     }
 
 }

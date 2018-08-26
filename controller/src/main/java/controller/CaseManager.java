@@ -4,6 +4,7 @@ import model.Player;
 import view.IView;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.Random;
 
 public class CaseManager {
@@ -12,16 +13,30 @@ public class CaseManager {
     int y = new Random().nextInt(595);
 
     //Méthode pour renvoyer le x et le y en fonction du numéro de la case
-    public static void Case(int Case){
+    public CaseManager(int x, int y){
 
-        int Yt = (Case/30)*30;
-        int Xt = (Case/20)*30;
+        /*int Yt = (Case/30)*30;
+        int Xt = (Case);*/
+        HashMap Map = new HashMap();
+
+        for(x=0 ; x<= 30 ; x++){
+            for(y=0 ; y<= 20 ; y++){
+               
+            }
+        }
+
+
+
+
 
 
         System.out.println("X : "+Xt+" XP :"+Player.x+"\nY : "+Yt+" YP :"+Player.y);
 
-
     }
+
+
+
+
 
     //Méthode pour renvoyer la case sur laquelle est le Player
     public int getPlayerCase(int Playerx, int Playery){
