@@ -18,6 +18,18 @@ public class GameManager {
 
         if (x != 0 && y != 0) {
             player = new Player("Toad", 1, x, y);
+            int aC = (((y + 30) / 30) * (IView.w / 30));
+            int bC = ((IView.w / 30) - ((x + 30) / 30));
+            int c = aC - bC;
+
+            CaseUtils.list.forEach(list -> {
+                if (list.getNumber() == c) {
+                    if (list.getType() == Case.BLACK) {
+                        x = new Random().nextInt(29) * 30;
+                        y = new Random().nextInt(19) * 30;
+                    }
+                }
+            });
 
 
         } else {
@@ -34,9 +46,8 @@ public class GameManager {
     public void setPlayerDirection(int direction) {
         player.setDirection(direction);
 
-        // A Chaque déplacement, va afficher une information
-        int aC = (((player.y + 30) / 30) * (IView.w / 30));
-        int bC = ((IView.w / 30) - ((player.x + 30) / 30));
+        int aC = (((Player.y + 30) / 30) * (IView.w / 30));
+        int bC = ((IView.w / 30) - ((Player.x + 30) / 30));
         int c = aC - bC;
 
         CaseUtils.list.forEach(list -> {
@@ -50,6 +61,9 @@ public class GameManager {
             }
         });
 
+        }
+
+
     }
 
-}
+

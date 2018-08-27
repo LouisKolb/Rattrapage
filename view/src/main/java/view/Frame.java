@@ -26,6 +26,8 @@ public class Frame extends JFrame implements KeyListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addKeyListener(this);
         this.setVisible(true);
+
+        new ManagementRepaint(affichage);
     }
 
     public void keyPressed(KeyEvent keyEvent) {
@@ -43,7 +45,7 @@ public class Frame extends JFrame implements KeyListener {
                 affichage.manager.setPlayerDirection(3);
                 break;
         }
-        repaint();
+
     }
 
     public void keyReleased(KeyEvent keyEvent) {

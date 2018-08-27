@@ -33,7 +33,7 @@ public class CaseObject {
     public void incrementI() {
         i++;
         if (ib)
-            if (i == 5)
+            if (i == 50)
                 this.type = Case.BLACK;
     }
 

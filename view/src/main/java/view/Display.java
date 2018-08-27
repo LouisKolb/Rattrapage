@@ -3,10 +3,13 @@ package view;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import controller.*;
 import model.IModel;
+import model.Player;
+
 import static view.IView.h;
 import static view.IView.w;
 
@@ -84,7 +87,7 @@ public class Display extends JPanel {
             });
         }
 
-        g.drawImage(toad,manager.player.x,manager.player.y,30,30,null);
+        g.drawImage(toad,manager.player.x, manager.player.y,30,30,null);
 }
 
     public void contour(Graphics g) {
@@ -94,15 +97,15 @@ public class Display extends JPanel {
             Case type = Case.getCaseType(0);
 
             CaseUtils.list.add(new CaseObject(type, x, 0, x));
-            CaseUtils.list.add(new CaseObject(type, x, 19, x));
+            CaseUtils.list.add(new CaseObject(type, x, 19, x+570));
             CaseUtils.list.add(new CaseObject(type, x, 20, x));
         }
         for (int y = 0; y <= 20; y++) {
 
             Case type = Case.getCaseType(0);
 
-            CaseUtils.list.add(new CaseObject(type, 0, y, y));
-            CaseUtils.list.add(new CaseObject(type, 29, y, y));
+            CaseUtils.list.add(new CaseObject(type, 0, y, (y*30)+1));
+            CaseUtils.list.add(new CaseObject(type, 29, y, y*30));
         }
     }
 

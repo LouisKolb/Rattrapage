@@ -9,9 +9,14 @@ public class Management {
 
     public Management() {
         new Thread(() -> {
+            try {
+                Thread.sleep(900);
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
             while (on) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException ie) {
                     ie.printStackTrace();
                 }
@@ -23,24 +28,24 @@ public class Management {
                     if (caseObject.getType() == Case.GRAY) {
                         gray = true;
                     }
+
+                    int aC = (((Player.y + 30) / 30) * (IView.w / 30));
+                    int bC = ((IView.w / 30) - ((Player.x + 30) / 30));
+                    int c = aC - bC;
+
+
+                    if (caseObject.getNumber() == c) {
+
+                        if (caseObject.getType() == Case.BLACK) {
+                            Player.isLose();
+                        }
+                    }
+
                 }
                 if (!gray) {
                     Player.isWinner();
                 }
 
-                int aC = (((Player.y + 30) / 30) * (IView.w / 30));
-                int bC = ((IView.w / 30) - ((Player.x + 30) / 30));
-                int c = aC - bC;
-
-                CaseUtils.list.forEach(list -> {
-                    if (list.getNumber() == c) {
-
-                        if (list.getType() == Case.BLACK) {
-                            Player.isLose();
-                        }
-                    }
-
-                });
             }
         }).start();
     }
