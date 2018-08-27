@@ -19,12 +19,13 @@ public class Main{
         final ControllerFacade controller = new ControllerFacade(test2, test);
 
         controller.start();
-        new Frame(test);
+        Frame frame = new Frame(test);
 
         float startTime = System.currentTimeMillis();
 
         System.out.println("- Taille de la grille: "+ IView.w + " x " + IView.h);
 
+        new ViewManagement(frame);
     }
 
 }

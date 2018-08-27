@@ -8,7 +8,7 @@ import view.IView.*;
 
 public class Player {
 
-    public long startTime = System.currentTimeMillis();
+    public static long startTime = System.currentTimeMillis();
     private String name;
     private int direction;
     public static int x;
@@ -67,7 +67,7 @@ public class Player {
         return direction;
     }
 
-    public void isWinner(){
+    public static void isWinner(){
         float time = System.currentTimeMillis() - startTime;
         time = time /1000;
 
@@ -103,7 +103,7 @@ public class Player {
 
     }
 
-    public void isLose(){
+    public static void isLose(){
         float time = System.currentTimeMillis() - startTime;
         time = time /1000;
 
@@ -114,7 +114,7 @@ public class Player {
         String pseudo = JOptionPane.showInputDialog(null, "Vous avez perdu :(\nTemps écoulé : "+ time + " s\nEntrer votre pseudo :","Défaite !" ,JOptionPane.INFORMATION_MESSAGE );
 
         try{
-            String url="jdbc:mysql://82.244.188.72:3306/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
+            String url="jdbc:mysql://famillekolb.freeboxos.fr:3306/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
             String user="louis";
             String password="louis";
 

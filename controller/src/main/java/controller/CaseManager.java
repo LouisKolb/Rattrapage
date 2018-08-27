@@ -12,25 +12,22 @@ public class CaseManager {
     int x = new Random().nextInt(870);
     int y = new Random().nextInt(595);
 
+    public static HashMap map = new HashMap();
+
     //Méthode pour renvoyer le x et le y en fonction du numéro de la case
-    public CaseManager(int x, int y){
+    public CaseManager(){
+
 
         /*int Yt = (Case/30)*30;
         int Xt = (Case);*/
-        HashMap Map = new HashMap();
 
-        for(x=0 ; x<= 30 ; x++){
-            for(y=0 ; y<= 20 ; y++){
-               
+
+        for(y=0 ; y<= 20 ; y++){
+            for(x=0 ; x<= 30 ; x++){
+                //map.put(new CaseLocationObject(x, y), new CaseObject(Case.getCaseType(new Random().nextInt(2)), graphics, x, y));
+                System.out.println("x: " + x + " y: " + y);
             }
         }
-
-
-
-
-
-
-        System.out.println("X : "+Xt+" XP :"+Player.x+"\nY : "+Yt+" YP :"+Player.y);
 
     }
 
@@ -46,21 +43,6 @@ public class CaseManager {
 
     public void fillCase(Graphics g){
 
-    }
-
-    public void fillBlack(Graphics g, int x, int y){
-        g.setColor(Color.BLACK);
-        g.fillRect(x, y, 30, 30);
-    }
-
-    public void fillGray(Graphics g, int x, int y){
-        g.setColor(Color.GRAY);
-        g.fillRect(x, y, 30, 30);
-    }
-
-    public void fillRed(Graphics g, int x, int y){
-        g.setColor(Color.RED);
-        g.fillRect(x, y, 30, 30);
     }
 
 
