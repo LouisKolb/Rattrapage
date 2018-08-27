@@ -1,19 +1,12 @@
 package view;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import controller.*;
 import model.IModel;
-import model.Player;
-
 import static view.IView.h;
 import static view.IView.w;
 
@@ -46,8 +39,8 @@ public class Display extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int x = new Random().nextInt(870);
-        int y = new Random().nextInt(595);
+        int x ;
+        int y ;
 
         contour(g);
 
@@ -55,10 +48,6 @@ public class Display extends JPanel {
             start = true;
             for (y = 1; y <= 18; y++) {
                 for (x = 1; x <= 28; x++) {
-                    //map.put(new CaseLocationObject(x, y),
-                    //new CaseObject(Case.getCaseType(new Random().nextInt(2)), g, x, y);
-
-                    //);
 
                     int random = 1;
 
@@ -100,29 +89,23 @@ public class Display extends JPanel {
 
     public void contour(Graphics g) {
 
-        g.setColor(Color.BLACK);
+        for (int x = 0; x <= 30; x++) {
 
-        for (int x = 0; x <= 30; x++) {
-            g.fillRect(x * 30, 0, 30, 60);
+            Case type = Case.getCaseType(0);
+
+            CaseUtils.list.add(new CaseObject(type, x, 0, x));
+            CaseUtils.list.add(new CaseObject(type, x, 19, x));
+            CaseUtils.list.add(new CaseObject(type, x, 20, x));
         }
-        for (int x = 0; x <= 30; x++) {
-            g.fillRect(x * 30, 570, 30, 60);
-        }
-        for (int y = 0; y <= 30; y++) {
-            g.fillRect(0, y * 30, 30, 30);
-        }
-        for (int y = 0; y <= 30; y++) {
-            g.fillRect(870, y * 30, 30, 30);
+        for (int y = 0; y <= 20; y++) {
+
+            Case type = Case.getCaseType(0);
+
+            CaseUtils.list.add(new CaseObject(type, 0, y, y));
+            CaseUtils.list.add(new CaseObject(type, 29, y, y));
         }
     }
 
-    /*public void paintcredit(Graphics z) {
-        Font font = new Font("Courier", Font.BOLD, 15);
-        z.setFont(font);
-        z.setColor(Color.YELLOW);
-        z.drawString("Exia ST A1 : Louis", 325 , 570);
-        this.repaint();
-    }*/
 
     public void fillBlack(Graphics g, int x, int y) {
         g.setColor(Color.BLACK);

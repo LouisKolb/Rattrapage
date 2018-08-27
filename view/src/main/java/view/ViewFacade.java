@@ -5,8 +5,6 @@ import javax.swing.JOptionPane;
 
 public class ViewFacade implements IView {
 
-    private Frame frame;
-
     public ViewFacade() {
         super();
     }

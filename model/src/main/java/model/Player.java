@@ -3,9 +3,6 @@ package model;
 import javax.swing.*;
 import java.sql.*;
 
-import view.IView;
-import view.IView.*;
-
 public class Player {
 
     public static long startTime = System.currentTimeMillis();
@@ -53,18 +50,9 @@ public class Player {
         }
     }
 
-
-    public String getName() {
-        return name;
-    }
-
     public void setDirection(int direction) {
         this.direction = direction;
         next();
-    }
-
-    public int getDirection() {
-        return direction;
     }
 
     public static void isWinner(){
@@ -75,12 +63,12 @@ public class Player {
         System.out.println("- Durée de la partie: " + time + "s");
         System.out.println("- Partie terminé !");
 
-        String pseudo = JOptionPane.showInputDialog(null, "Vous avez gagné :(\nTemps écoulé : "+ time + " s\nEntrer votre pseudo :","Victoire ! !" ,JOptionPane.INFORMATION_MESSAGE );
+        String pseudo = JOptionPane.showInputDialog(null, "Vous avez gagné :D\nTemps écoulé : "+ time + " s\nEntrer votre pseudo :","Victoire ! !" ,JOptionPane.INFORMATION_MESSAGE );
 
         try{
-            String url="jdbc:mysql://82.244.188.72:3306/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
-            String user="louis";
-            String password="louis";
+            String url="jdbc:mysql://corentin-b.fr/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
+            String user="rattrapage";
+            String password="rattrapage";
 
             Connection conn = null;
             conn = DriverManager.getConnection(url, user, password);
@@ -114,9 +102,9 @@ public class Player {
         String pseudo = JOptionPane.showInputDialog(null, "Vous avez perdu :(\nTemps écoulé : "+ time + " s\nEntrer votre pseudo :","Défaite !" ,JOptionPane.INFORMATION_MESSAGE );
 
         try{
-            String url="jdbc:mysql://famillekolb.freeboxos.fr:3306/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
-            String user="louis";
-            String password="louis";
+            String url="jdbc:mysql://corentin-b.fr/rattrapage?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&noAccessToProcedureBodies=true";
+            String user="rattrapage";
+            String password="rattrapage";
 
             Connection conn = null;
             conn = DriverManager.getConnection(url, user, password);

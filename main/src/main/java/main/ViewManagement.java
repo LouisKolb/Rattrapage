@@ -1,8 +1,5 @@
 package main;
 
-import controller.Case;
-import controller.CaseUtils;
-import view.Display;
 import view.Frame;
 
 public class ViewManagement {
@@ -22,7 +19,4 @@ public class ViewManagement {
         }).start();
     }
 
-    public void interupt() {
-        Thread.currentThread().interrupt();
-    }
 }

@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 import model.IModel;
-import view.Display;
 
 import static view.IView.h;
 import static view.IView.w;
@@ -14,7 +13,6 @@ public class Frame extends JFrame implements KeyListener {
 
     private Display affichage;
     private IModel model;
-    public static long startTime;
 
     public Frame(IModel model) {
         this.model = model;
@@ -49,20 +47,6 @@ public class Frame extends JFrame implements KeyListener {
     }
 
     public void keyReleased(KeyEvent keyEvent) {
-       /* switch (keyEvent.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                this.controller.orderPerform(Order.KEY_UP, false);
-                break;
-            case KeyEvent.VK_DOWN:
-                this.controller.orderPerform(Order.KEY_DOWN, false);
-                break;
-            case KeyEvent.VK_LEFT:
-                this.controller.orderPerform(Order.KEY_LEFT, false);
-                break;
-            case KeyEvent.VK_RIGHT:
-                this.controller.orderPerform(Order.KEY_RIGHT, false);
-                break;
-        }*/
         repaint();
     }
 
